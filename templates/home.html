@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblog</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- The header will contain images, branding and navigation -->
+    <header class="navbar">
+        <div class="navbar-brand">
+            <img class="brand-logo" src="/static/microblog-logo.svg" alt="The Microblog Logo" />Microblog
+        </div>
+        <ul class="navbar-navigation">
+            <li class="navbar-navigation-item"><a href="#" class="navbar-link">Recent</a></li>
+            <li class="navbar-navigation-item"><a href="#" class="navbar-link">Calendar</a></li>
+        </ul>
+        
+    </header>
+    <!-- Will contain form and recent posts -->
+    <main class="main">
+        <section>
+            <h1>Add New Entry</h1>
+            <form method="post" class="form">
+                <p class="form-input">
+                <textarea name="content" class="form-textarea" id="entry" cols="30" rows="10" aria-label="Entry Contents" placeholder="Blog Entry Here..."></textarea>
+                </p>
+                <button type="submit" class="form-submit">Add Entry</button>
+            </form>
+        </section>
+        <section>
+            <h1>Recent Posts</h1>
+            {% for entry in entries %}
+            <article class="entry">
+                <div>
+                    <h2 class="entry-title">{{  entry[0] | truncate(30, true) }}</h2>
+                    <time class="entry-date" datetime="{{ entry[1] }}"> • {{ entry[2] }}</time>
+                </div>
+                <p class="entry-content">
+                    {{ entry[0] }}
+                </p>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+    <!-- Links and page information -->
+    <footer class="footer">
+        <div class="footer-content">
+            <section class="left">
+                <a class="footer-item">Made by Ekene Lawal</a>
+                <a class="footer-item">Check out my other projects</a>
+            </section>
+            <section class="right">
+                <div class="footer-column">
+                <a class="footer-item">Recent</a>
+                <a class="footer-item">Calendar</a>
+                </div>
+
+                <div class="footer-column">
+                    <a class="footer-item">About</a>
+                    <a class="footer-item">How this was made</a>
+                </div>
+            </section>
+        </div>
+    </footer>
+</body>
+</html>
